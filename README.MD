@@ -5,11 +5,11 @@ var (
     contentType string
 )
 
-v1 := fy.Group("https://starmicro.happyelements.cn/v1")
+v1 := fy.Group("https://starmicro.happyelements.cn/v1").
+    SetHeader("Authorization", "{token}").
+    AddCookie(&http.Cookie{Name: "{name}", Value: "{value}"})
 
 err := v1.GET("/idol/forumdetail").
-    SetHeader("Authorization", "{token}").
-    AddCookie(&http.Cookie{Name:"{name}", Value:"{value}"}).
     AddQuery("id", "15180").
     Do().
     BindCode(&code).
